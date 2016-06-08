@@ -7,6 +7,7 @@
 #include "..\LightSynthArduino\Debounce.h"
 #include "..\LightSynthArduino\SequenceState.h"
 #include "..\LightSynthArduino\States.h"
+#include "..\LightSynthArduino\ChannelSelector.h"
 
 #ifndef LOW
 	#define LOW 0
@@ -15,6 +16,28 @@
 #ifndef HIGH
 	#define HIGH 1
 #endif 
+
+TEST(testChannelSelector, returnsCorrectChannel)
+{
+	// mock up the PORTx registers with heap memory
+	unsigned char defaultState = 0x0;
+	unsigned char * ports;
+	ports = (unsigned char*)malloc(3);
+
+	ports[1] = 0xFF;
+	ports[2] = 0xFF;
+
+	unsigned char pinMask = 0x1E;
+	ChannelSelector selector(defaultState, ports, pinMask);
+	EXPECT_EQ(ports[1], 0xFF & ~pinMask);
+	EXPECT_EQ(ports[2], 0xFF & ~pinMask);
+
+	ports[0] = 0x38;
+	EXPECT_EQ(selector.value(), 0x18);
+	EXPECT_EQ(selector.valueShiftedToRoot(), 0x3);
+	free(ports);
+}
+
 
 TEST(testTimerCalculator, MyFirstTest)
 {

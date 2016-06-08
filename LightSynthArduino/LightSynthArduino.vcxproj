@@ -147,6 +147,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ChannelSelector.h" />
     <ClInclude Include="Debounce.h" />
     <ClInclude Include="SequenceState.h" />
     <ClInclude Include="States.h" />
@@ -155,6 +156,7 @@
     <ClInclude Include="TimerCalculator.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ChannelSelector.cpp" />
     <ClCompile Include="Debounce.cpp" />
     <ClCompile Include="LightSynthArduino.cpp" />
     <ClCompile Include="SequenceState.cpp" />
