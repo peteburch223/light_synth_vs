@@ -13,6 +13,4 @@ protected:
 	unsigned long t2_prescaler_array[7];
 	unsigned long calc_period(unsigned long t1_comparator_value);
 	unsigned long calc_t2_period(void);
-	void debug_data(void);
-	// void readback_array(void);
 };
